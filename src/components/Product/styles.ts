@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const ProductCard = styled.div<{ backgroundImage: string }>`
+interface Props {
+  backgroundImage?: string;
+}
+
+export const ProductCard = styled.div<Props>`
   border: 1px solid #ddd;
   padding: 16px;
   border-radius: 8px;
