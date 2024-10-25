@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const Card = styled.div`
-background-color: red;
-width: 101%;
+background-color: rgba(255, 0, 0, 0.404);
+width: 100%;
 padding: 11px;
 
 display: flex;
@@ -14,6 +14,7 @@ align-items: center;
 
  img{
     width: 70%;
+    border-radius: 8px;
  }
 
  h3 {

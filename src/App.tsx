@@ -6,6 +6,7 @@ import Header from './components/Header';
 import { useState } from 'react';
 import { Container } from './components/Container';
 import ProductDetails from './components/ProductDetails';
+import Footer from './components/Footer';
 
 function App() {
   const [cartItems, setCartItems] = useState<any[]>([]);
@@ -15,15 +16,20 @@ function App() {
     setCartItems((prevItems) => [...prevItems, product]);
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <Router>
       <Container>
       <Header cartItemCount={cartItems.length} />
       <Routes>
         <Route path="/" element={<Home addToCart={addToCart} />} />
-        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} clearCart={clearCart}/>} />
         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
+      <Footer/>
       </Container>
     </Router>
   );

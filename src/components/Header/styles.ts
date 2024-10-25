@@ -5,12 +5,20 @@ width: 100%;
   background-color: #e50914;
   padding: 16px;
   color: white;
+  border-radius:0 0 12px 12px;
 `;
 
 export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  .cart  {
+    width: 3.75rem;
+  }
+  img{
+    width: 1.6rem;
+  }
 `;
 
 export const CartBadge = styled.span`
@@ -22,4 +30,6 @@ export const CartBadge = styled.span`
   position: relative;
   top: -10px;
   right: -10px;
+  
+ 
 `;

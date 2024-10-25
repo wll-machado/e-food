@@ -29,7 +29,7 @@ const ProductDetails = () => {
       <h3>Ingredientes:</h3>
       <ul>
         {product.ingredients.map((ingredient, index) => (
-          <li key={index}>{ingredient}</li>
+          <li key={index}>-{ingredient}</li>
         ))}
       </ul>
     </Card>
