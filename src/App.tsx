@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Container } from './components/Container';
 import ProductDetails from './components/ProductDetails';
 import Footer from './components/Footer';
+import GlobalStyle from '../main'
 
 function App() {
   const [cartItems, setCartItems] = useState<any[]>([]);
@@ -23,6 +24,7 @@ function App() {
   return (
     <Router>
       <Container>
+      <GlobalStyle />
       <Header cartItemCount={cartItems.length} />
       <Routes>
         <Route path="/" element={<Home addToCart={addToCart} />} />
