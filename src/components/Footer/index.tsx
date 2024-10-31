@@ -12,7 +12,6 @@ const Footer = () => {
         <Link to="/" >
             <img src={logo} alt="logo" />
         </Link>
-            <p>E-food &copy; 2024 Todos os direitos reservados</p>
         </FooterLogo>
         <FooterSocial>
             <ul>
@@ -27,6 +26,7 @@ const Footer = () => {
                 </li>
             </ul>
         </FooterSocial>
+        <p>A efood é uma plataforma para divulgação de estabelecimentos, a responsabilidade pela entrega, qualidade dos produtos é toda do estabelecimento contratado. </p>
     </FooterContainer>
   )
 }

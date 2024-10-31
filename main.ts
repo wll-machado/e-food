@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import cover from './src/assets/cover restaurant.jpg'
+
 
  const GlobalStyle = createGlobalStyle`
   *{
@@ -8,12 +8,11 @@ import cover from './src/assets/cover restaurant.jpg'
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-    overflow-y: hidden;
+    
 }
 
 body{
-    background-image: url(${cover});
-    height: 100vh;
+    background-color: aliceblue;
 }
 `;
 

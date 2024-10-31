@@ -1,38 +1,50 @@
+// ProductDetails.tsx
+import { Link, useParams } from 'react-router-dom';
+import { MenuList } from '../Menu';
+import {  Background, HomeContainer, Lista, MainHome } from './style';
+import logo from '../../assets/logo.png';
+import Cart from '../Cart';
 
-import { useParams } from 'react-router-dom';
-import { products } from '../ProductList';
-import { Card } from './style';
-
-const productsIngridient = [
-  { ingredients: ['Massa', 'Molho de tomate', 'Queijo', 'Pepperoni'] },
-  {  ingredients: ['Pão', 'Carne', 'Queijo', 'Alface', 'Tomate'] },
-  {  ingredients: ['Arroz', 'Peixe', 'Alga', 'Molho de Soja'] },
-];
-
-const combinedProducts = products.map((product, index) => ({
-    ...product,
-    ingredients: productsIngridient[index].ingredients, 
-  }));
-
-const ProductDetails = () => {
+const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCartOpen }: any) => {
   const { id } = useParams<{ id: string }>();
-  const product = combinedProducts.find(p => p.id === Number(id));
+  const menuItem = MenuList.find((item) => item.id === parseInt(id || '', 10));
 
-  if (!product) {
-    return <div>Produto não encontrado</div>;
+  if (!menuItem) {
+    return <p>Item não encontrado</p>;
   }
 
   return (
-    <Card>
-      <h1>{product.name}</h1>
-      <img src={product.url} alt={product.name} />
-      <h3>Ingredientes:</h3>
-      <ul>
-        {product.ingredients.map((ingredient, index) => (
-          <li key={index}>-{ingredient}</li>
+    <MainHome>
+      <HomeContainer>
+        <Link to="/">
+          <h2>Restaurantes</h2>
+        </Link>
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
+        <button onClick={() => setIsCartOpen(!isCartOpen)}>
+          <p>Itens no carrinho: {cartItems.length}</p>
+        </button>
+      </HomeContainer>
+      
+      <Background img={menuItem.url}  >
+        <h2>{menuItem.name}</h2>
+      </Background>
+     
+      <Lista>
+        {menuItem.menu.map((menuItem) => (
+          <li key={menuItem.name}>
+            <img src={menuItem.img} alt={menuItem.name} />
+            <h3>{menuItem.name}</h3>
+            <p>{menuItem.description}</p>
+            <button type="button" onClick={() => addToCart(menuItem)}>
+              Adicionar ao Carrinho
+            </button>
+          </li>
         ))}
-      </ul>
-    </Card>
+      </Lista>
+      <Cart cartItems={cartItems} clearCart={clearCart} isOpen={isCartOpen} isClose={() => setIsCartOpen(false)} />
+    </MainHome>
   );
 };
 

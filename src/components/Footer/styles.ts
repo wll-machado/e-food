@@ -1,30 +1,40 @@
 import styled from "styled-components";
 
 export const FooterContainer = styled.div`
-position: absolute;
-bottom: 0;
+position: relative;
+
  display: flex;
- justify-content: center;
+ padding: 60px 20px;
  align-items: center;
  flex-direction: column;
- width: 1024px;
- height: 20vh;
- background-color: red;
+ width: 100%;
+ height: 298px;
+ background-color: #FFEBD9;
+;
+
+p{
+    color: #E66767;
+    width: 480px;
+    height: 26px;
+    font-size: 10px;
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+}
 
 `
 
 export const FooterLogo = styled.div`
-color: white;
-padding-top: 2vh;
 margin-bottom: 2vh;
 display: flex;
 flex-direction: column;
 align-items: center;
-gap: 4px;
+margin-bottom: 50px;
 
 img{
-    width: 80px;
-    height: 50px;
+    width: 125px;
+    height: 57.5px;
+    
 }
 `
 
@@ -33,13 +43,13 @@ display: flex;
 
 ul{
     display: flex;
-    gap: 4px;
-
+    gap: 8px;
+    
     li{
         cursor: pointer;
     }
     img{ 
-        width: 30px;
+        width: 24px;
     }
 }
 `

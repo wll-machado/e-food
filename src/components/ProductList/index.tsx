@@ -13,9 +13,9 @@ export const products = [
 const ProductList = ({ addToCart }:any) => {
   return (
     <GridContainer>
-      {products.map((product) => (
+      {/* {products.map((product) => (
         <Product key={product.id} product={product} addToCart={addToCart} />
-      ))}
+      ))} */} <p>teste</p>
     </GridContainer>
   );
 };

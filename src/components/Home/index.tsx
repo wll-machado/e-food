@@ -1,14 +1,18 @@
 
-import ProductList from '../ProductList';
+import { Link } from 'react-router-dom';
+// import ProductList from '../ProductList';
 import { HomeContainer, Title } from './styles';
+import logo from '../../assets/logo.png'
 
 
-
-const Home = ({ addToCart }:any) => {
+const Home = () => {
   return (
     <HomeContainer>
-      <Title>Menu</Title>
-      <ProductList addToCart={addToCart} />
+      <Link to="/" >
+            <img src={logo} alt="logo" />
+        </Link>
+      {/* <ProductList addToCart={addToCart} /> */}
+      <Title>Viva experiências gastronômicas no conforto da sua casa</Title>
     </HomeContainer>
   );
 };
