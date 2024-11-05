@@ -7,7 +7,7 @@ import Cart from '../Cart';
 
 const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCartOpen }: any) => {
   const { id } = useParams<{ id: string }>();
-  const menuItem = MenuList.find((item) => item.id === parseInt(id || '', 10));
+  const menuItem = MenuList.find((item:any) => item.id === parseInt(id || '', 10));
 
   if (!menuItem) {
     return <p>Item não encontrado</p>;
@@ -32,7 +32,7 @@ const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCart
       </Background>
      
       <Lista>
-        {menuItem.menu.map((menuItem) => (
+        {menuItem.menu.map((menuItem:any) => (
           <li key={menuItem.name}>
             <img src={menuItem.img} alt={menuItem.name} />
             <h3>{menuItem.name}</h3>
