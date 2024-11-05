@@ -28,6 +28,8 @@ const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCart
       </HomeContainer>
       
       <Background img={menuItem.url}  >
+        <div></div>
+        <span>{menuItem.origin}</span>
         <h2>{menuItem.name}</h2>
       </Background>
      

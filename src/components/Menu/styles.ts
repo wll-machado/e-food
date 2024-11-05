@@ -16,7 +16,6 @@ export const Card = styled.div`
 width: 472px;
 height: 398px;
 border: 1px solid #E66767;
-
 cursor: pointer;
 overflow: hidden;
 
@@ -25,21 +24,43 @@ div {
     width: 100%;
     height: 217px;
     overflow: hidden;
+    position: relative;
+   
+}
 
-    img{
+`
+
+export const Cover = styled.img`
+  
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    transition: all .5s ease;
+    
+`
+export const Highlights = styled.div`
+        position: absolute;
+        z-index: 10;
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px;
+        gap: 5px;
 
-    transition: all .5s ease;}
-     
-    &:hover img{
-    transform: scale(1.1);
-}
+        p{
+            background-color: #E66767;
+            padding: 4px;
+            color:#FFEBD9;
+            font-family: 'Roboto';
+            font-size: 12px;
+            font-weight: 700;
+            height: 26px;
 
-
-}
-
-
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 `
 
 export const Texts = styled.div`
