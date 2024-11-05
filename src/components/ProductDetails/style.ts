@@ -11,8 +11,8 @@ interface DivProps {
 export const Background = styled.div<DivProps>`
 background-image: ${({ img }) => img ? `url(${img})` : 'none'};
 width: 100%;
-min-height: 380px;
-background-position:  center bottom ;
+min-height: 280px;
+background-position:  center center ;
 background-repeat: no-repeat;
 background-size:cover;
 
@@ -30,8 +30,8 @@ div{
   left: 0;
   background-color: black;
   width: 100%;
-min-height: 380px;
-opacity: .3;
+min-height: 280px;
+opacity: .4;
 }
 
 span{
@@ -39,6 +39,7 @@ span{
   font-weight: 100;
   font-size:32px;
   color: white;
+  z-index:5;
 }
 
 h2{
