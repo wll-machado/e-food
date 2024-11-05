@@ -83,13 +83,22 @@ export const CartItem = styled.li`
   }
 
   div{
-    padding: 10px;
-
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
     span{
       color: #E66767;
     font-size: 14px;
     font-family: 'Roboto';
     font-weight: 400;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+      align-self: flex-end;
     }
   }
 `;
@@ -167,6 +176,35 @@ h3{
 }
 
 `
+export const Wrapper = styled.div`
+display: flex;
+justify-content: space-between;
+width: 264px;
+.Label{
+  display: flex;
+  flex-direction: column;
+  height: 56px;
+  
+  span{
+    font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFEBD9;
+  }
+  input{
+    width: 122px;
+    height: 32px;
+    border: none;
+    color: #E66767;
+    background-color: #FFEBD9;
+    padding: 0 4px;
+    &:focus{
+      outline: none;
+    }
+  }
+}
+`
+
 
 export const Pagamento = styled.form`
 display:flex;
@@ -225,4 +263,18 @@ export const Message = styled.p`
   font-size: 14px;
   font-weight: 700;
   color: #FFEBD9; 
+`
+
+export const CardWrapper = styled.div`
+display: flex;
+justify-content: space-between;
+max-width: 264px;
+
+.labelCard {
+width:150px;
+}
+
+.labelCvv{
+  width:64px;
+}
 `

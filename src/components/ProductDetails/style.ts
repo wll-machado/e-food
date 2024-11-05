@@ -127,7 +127,7 @@ export const Lista = styled.ul`display: flex;
  }
 
 
-  /* Media query para telas menores (ex.: tablets) */
+ 
   @media (max-width: 1024px) {
     justify-content: center;
     gap: 16px;
@@ -135,8 +135,8 @@ export const Lista = styled.ul`display: flex;
     
   }
 
-  /* Media query para telas muito pequenas (ex.: smartphones) */
-  @media (max-width: 430px) {
+  
+  @media (max-width: 480px) {
     margin: 20px auto;
     gap: 8px;
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartContainer, CartList, CartItem, Total, Formulario, MainContainer, CloseButton, BtnCart, Entrega, Pagamento, Message } from './styles';
+import { CartContainer, CartList, CartItem, Total, Formulario, MainContainer, CloseButton, BtnCart, Entrega, Pagamento, Message, Wrapper, CardWrapper } from './styles';
+
+import trash from '../../assets/delete.svg';
 
 const Cart = ({ cartItems, clearCart, isClose, isOpen}: any) => {
   const [step, setStep] = useState(1); // Controla a etapa atual
@@ -56,6 +58,7 @@ const Cart = ({ cartItems, clearCart, isClose, isOpen}: any) => {
                 <img src={item.img} alt={item.name} />
                 <div>
                   <h2>{item.name}</h2> <span>R$ {item.price}</span>
+                  <img src={trash} alt="delete" />
                 </div>
               </CartItem>
             ))}
@@ -99,6 +102,7 @@ const Cart = ({ cartItems, clearCart, isClose, isOpen}: any) => {
                     />
                   </label>
 
+                  <Wrapper>
                   <label className='Label'>
                     <span>CEP:</span>
                     <input
@@ -108,6 +112,16 @@ const Cart = ({ cartItems, clearCart, isClose, isOpen}: any) => {
                       required
                     />
                   </label>
+                  <label className='Label'>
+                    <span>Número:</span>
+                    <input
+                      type="text"
+                      value={address.zip}
+                      onChange={(e) => setAddress({ ...address, zip: e.target.value })}
+                      required
+                    />
+                  </label>
+                  </Wrapper>
 
                   <label className='Label'>
                     <span>Complemento (opcional):</span>
@@ -142,7 +156,7 @@ const Cart = ({ cartItems, clearCart, isClose, isOpen}: any) => {
                 </label>
                 {payment.method && (
                   
-                  <>
+                <>
                   <label>
                     <span>Nome no Cartão:</span>
                     <input
@@ -152,24 +166,27 @@ const Cart = ({ cartItems, clearCart, isClose, isOpen}: any) => {
                       required
                     />
                   </label>
-                  <label>
+
+                  <CardWrapper>
+                   <label >
                     <span>Número do Cartão:</span>
-                    <input
+                    <input className='labelCard'
                       type="text"
                       value={payment.cardNumber}
                       onChange={(e) => setPayment({ ...payment, cardNumber: e.target.value })}
                       required
                     />
-                  </label>
-                  <label>
+                    </label>
+                    <label >
                     <span>CVV:</span>
-                    <input
+                    <input className='labelCvv'
                       type="number"
                       value={payment.Cvv}
                       onChange={(e) => setPayment({ ...payment, Cvv: e.target.value })}
                       required
                     />
-                  </label>
+                    </label>
+                  </CardWrapper>
                   <label>
                     <span>Validade do Cartão:</span>
                     <input
