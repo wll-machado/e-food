@@ -12,7 +12,7 @@ import { createGlobalStyle } from "styled-components";
 }
 
 body{
-    background-color: aliceblue;
+    background-color: #fff8f1;
 }
 `;
 

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { MainMenu, Card, Texts, Subtext, MenuOrder } from "./styles";
+import star from '../../assets/estrela.svg'
 
 
-export const MenuList = [
+
+export const MenuList: any = [
     { id: 1, note: 4.5, name: 'Hioki Sushi' , menu: [
         {
             name: 'Sashimi',
@@ -24,7 +26,7 @@ export const MenuList = [
         },
         
 
-    ], url : 'https://images.squarespace-cdn.com/content/v1/63fc9d916fb0b31ab06c0ead/34ff468e-3358-4e3f-ac4d-9d9b717e29bb/restaurante-japones-morumbi.jpg' , description: 'Restaurante japones classico' },
+    ], url : 'https://images.squarespace-cdn.com/content/v1/63fc9d916fb0b31ab06c0ead/34ff468e-3358-4e3f-ac4d-9d9b717e29bb/restaurante-japones-morumbi.jpg' , description: 'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!' },
     { id: 2, note: 4.9, name: 'Steak House' , menu: [
       {
           name: 'Picanha',
@@ -46,7 +48,7 @@ export const MenuList = [
       },
       
 
-  ], url : 'https://clube-static.clubegazetadopovo.com.br/images/parceiros/1607623886555.jpeg' , description: 'Melhores carnes da cidade' },
+  ], url : 'https://clube-static.clubegazetadopovo.com.br/images/parceiros/1607623886555.jpeg' , description: 'Peça já as melhores carnes no conforto da sua casa! Carnes frescas, temperos deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!' },
   { id: 3, note: 4.8, name: 'La Dolce Vita Trattoria' , menu: [
     {
         name: 'Pizza',
@@ -68,13 +70,36 @@ export const MenuList = [
     },
     
 
+], url :'https://www.sarahbrito.com.br/wp-content/uploads/2017/01/fachada-noite-bistro-culinaria-italiana-bravissimo-1024x565.png' , description: 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!' },
+,
+  { id: 3, note: 4.8, name: 'La Dolce Vita Trattoria' , menu: [
+    {
+        name: 'Pizza',
+        price: 28,
+        description: 'A pizza é um dos alimentos mais famosos do mundo, e isso não seria diferente no Brasil, não é mesmo? Por isso, por aqui, temos um dia só para ela: 10 de julho, conhecido como dia da pizza' ,
+        img: 'https://p2.trrsf.com/image/fget/cf/1200/900/middle/images.terra.com/2023/07/10/dia-da-pizza-skkhweuqjcrq.jpg' ,
+    },
+    {
+        name: 'Macarronada',
+        price: 37,
+        description: 'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!' ,
+        img: 'https://i.pinimg.com/564x/ae/96/42/ae9642746b51a31590711784d2cb4ee1.jpg' ,
+    },
+    {
+        name: 'Lasanha',
+        price: 22,
+        description: 'A lasanha é outro prato tradicional italiano mundialmente popular, que foi adaptado em diversas culturas.' ,
+        img: 'https://romapravoce.com/wp-content/uploads/2020/09/parmigiana-comidas-tipicas-italianas.jpg' ,
+    }
+    
+
 ], url :'https://www.sarahbrito.com.br/wp-content/uploads/2017/01/fachada-noite-bistro-culinaria-italiana-bravissimo-1024x565.png' , description: 'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!' }
   ];
 
 const Menu = () => {
   return (
     <MainMenu>
-      { MenuList.map(menu => (
+      { MenuList.map((menu: any) => (
         <Card>
           <div>
            <img src={menu.url} alt={menu.name} />
@@ -82,7 +107,10 @@ const Menu = () => {
           <Texts>
            <Subtext>
              <h2>{menu.name}</h2>
-             <span className="fa fa-star checked">{ menu.note}</span>
+              <div>
+               <span >{ menu.note} </span>
+               <img src={star} alt="estrela" />
+             </div>
            </Subtext>
             <MenuOrder>
             <p>{menu.description}</p>
