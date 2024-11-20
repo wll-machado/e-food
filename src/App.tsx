@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Menu from './components/Menu';
 import Cart from './components/Cart';
 import ProductDetails from './components/ProductDetails';
-// import ProductList from './components/ProductList';
+
 
 function App() {
   const [cartItems, setCartItems] = useState<any[]>([]);
@@ -31,7 +31,6 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<><Home /><Menu /></>} />
-        {/* <Route path="/productlist" element={<ProductList cartItems={cartItems} addToCart={addToCart} clearCart={clearCart} />} /> */}
         <Route path="/menu/:id" 
           element={<ProductDetails 
                      addToCart={addToCart} 

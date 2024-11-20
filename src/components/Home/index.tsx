@@ -11,7 +11,6 @@ const Home = () => {
       <Link to="/" >
             <img src={logo} alt="logo" />
         </Link>
-      {/* <ProductList addToCart={addToCart} /> */}
       <Title>Viva experiências gastronômicas no conforto da sua casa</Title>
     </HomeContainer>
   );

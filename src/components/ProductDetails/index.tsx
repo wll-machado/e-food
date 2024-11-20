@@ -16,6 +16,7 @@ const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCart
   return (
     <MainHome>
       <HomeContainer>
+        <div>
         <Link to="/">
           <h2>Restaurantes</h2>
         </Link>
@@ -25,12 +26,14 @@ const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCart
         <button onClick={() => setIsCartOpen(!isCartOpen)}>
           <p>Itens no carrinho: {cartItems.length}</p>
         </button>
+        </div>
       </HomeContainer>
       
       <Background img={menuItem.url}  >
-        <div></div>
-        <span>{menuItem.origin}</span>
-        <h2>{menuItem.name}</h2>
+        <div className="wrapper">
+          <span>{menuItem.origin}</span>
+          <h2>{menuItem.name}</h2>
+        </div>        
       </Background>
      
       <Lista>

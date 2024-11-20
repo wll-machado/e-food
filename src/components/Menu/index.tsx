@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { MainMenu, Card, Texts, Subtext, MenuOrder, Highlights, Cover } from "./styles";
 import star from '../../assets/estrela.svg'
+import { useEffect, useState } from "react";
 
 
 
@@ -169,29 +170,38 @@ export const MenuList: any = [
   ];
 
 const Menu = () => {
+
+  const [menuList, setMenuList] = useState([]);
+
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes').
+    then( res => res.json()).
+    then( data => setMenuList(data));
+  }, []);
+
   return (
     <MainMenu>
-      { MenuList.map((menu: any) => (
+      { menuList.map((menu: any) => (
         <Card>
           <div>
             <Highlights>
-              { menu.week.length > 0 ? (
-                <p>{menu.week}</p>
+              { menu.destacado ? (
+                <p>Destaque da semana</p>
               ) : ''}
-              <p>{menu.origin}</p>
+              <p>{menu.tipo}</p>
             </Highlights>
-           <Cover src={menu.url} alt={menu.name} />
+           <Cover src={menu.capa} alt={menu.titulo} />
           </div>
           <Texts>
            <Subtext>
-             <h2>{menu.name}</h2>
+             <h2>{menu.titulo}</h2>
               <div>
-               <span >{ menu.note} </span>
+               <span >{ menu.avaliacao} </span>
                <img src={star} alt="estrela" />
              </div>
            </Subtext>
             <MenuOrder>
-            <p>{menu.description}</p>
+            <p>{menu.descricao}</p>
             <Link to={`/menu/${menu.id}`} className="BTN">Saiba mais</Link>
             </MenuOrder>
           </Texts>

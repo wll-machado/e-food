@@ -23,18 +23,27 @@ position: relative;
 
 display: flex;
 flex-direction: column;
-justify-content: space-between;
-div{
+justify-content: space-between; 
+
+&::after{
   position: absolute;
   top: 0;
   left: 0;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
-min-height: 280px;
-opacity: .4;
+  min-height: 280px;
+  content: '';
 }
 
-span{
+ .wrapper{
+   width:1024px;
+   height:260px;
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between; 
+   
+   span{
   font-family:'Roboto';
   font-weight: 100;
   font-size:32px;
@@ -49,17 +58,27 @@ h2{
   color: #ffffff;
   z-index:5;
 }
+ }
+
 `
 export const HomeContainer = styled.div`
    width: 100%;
    height:163px;
    padding:10px 120px;
    background-image: url(${fundo});
-   
- 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+    > div {
+      margin: 80px auto;
+      width: 1024px;
+      height: 100%;
+      
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     h2{
       color: #E66767;
       font-family: 'Roboto';

@@ -3,12 +3,12 @@ import styled from 'styled-components'
 export const MainMenu = styled.div`
 
 margin: 80px auto;
+width: 1024px;
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
 
 gap: 80px;
-width: 1024px;
 height: auto;
 
 `
