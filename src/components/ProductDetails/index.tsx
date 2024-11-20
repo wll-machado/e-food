@@ -1,10 +1,9 @@
-
 import { Link, useParams } from 'react-router-dom';
-// import { MenuList } from '../Menu';
 import {  Background, HomeContainer, Lista, MainHome } from './style';
 import logo from '../../assets/logo.png';
 import Cart from '../Cart';
 import { useEffect, useState } from 'react';
+import Plate from '../Plate';
 
 export interface Cardapio  {
   foto:string 
@@ -26,6 +25,16 @@ export type Restaurant = {
   cardapio: Cardapio[]
 }
 
+export interface Modal  {
+  isVisible: boolean
+  url: string 
+  preco:number
+  id:number
+  nome:string
+  descricao:string
+  porcao:string
+}
+
 const getDescription = (description:string) => {
   if(description.length > 95){
     return description.slice(0,92) + '...'
@@ -34,6 +43,28 @@ const getDescription = (description:string) => {
 }
 
 const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCartOpen }: any) => {
+
+  const [modal, setModal] = useState<Modal>({
+    isVisible: false,
+    url: '', 
+    preco:0,
+    id:0,
+    nome:'',
+    descricao:'',
+    porcao:''
+  })
+
+  const closeModal = () => {
+    setModal({
+      isVisible: false,
+      url: '', 
+      preco:0,
+      id:0,
+      nome:'',
+      descricao:'',
+      porcao:''})
+  }
+  
   const {id} = useParams()
 
   const [menuItem, setmenuItem] = useState<Restaurant>()
@@ -74,16 +105,26 @@ const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCart
      
       <Lista>
         {menuItem.cardapio.map((menuItem:any) => (
-          <li key={menuItem.name}>
+          <li key={menuItem.nome}>
             <img src={menuItem.foto} alt={menuItem.nome} />
             <h3>{menuItem.nome}</h3>
             <p>{getDescription(menuItem.descricao)}</p>
-            <button type="button" onClick={() => addToCart(menuItem)}>
+            <button type="button" onClick={() => {
+              setModal({
+                isVisible: true,
+                url: menuItem.foto, 
+                preco: menuItem.preco,
+                 id: menuItem.id, 
+                 nome: menuItem.nome, 
+                 descricao: menuItem.descricao, 
+                 porcao: menuItem.porcaourl})}}>
               Adicionar ao Carrinho
             </button>
           </li>
         ))}
       </Lista>
+      <Plate items={modal} menuItem={menuItem} cart={addToCart} closeModal={closeModal}/>
+      
       <Cart cartItems={cartItems} clearCart={clearCart} isOpen={isCartOpen} isClose={() => setIsCartOpen(false)} />
     </MainHome>
   );
