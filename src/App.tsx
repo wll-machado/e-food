@@ -14,7 +14,6 @@ function App() {
 
   const addToCart = (product: any) => {
     setCartItems((prevItems) => [...prevItems, product]);
-   
   };
 
   const closeCart = () => {

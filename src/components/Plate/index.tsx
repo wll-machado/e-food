@@ -1,7 +1,7 @@
 
 import { Modal, ModalContent } from './styled'
 
-const Plate = ({items, menuItem, cart, closeModal}:any) => {
+const Plate = ({items, cart, closeModal}:any) => {
     if (!items.isVisible) return null; 
 
     return (
@@ -19,7 +19,15 @@ const Plate = ({items, menuItem, cart, closeModal}:any) => {
                 <h4>{items.nome}</h4>
                 <p>{items.descricao}</p>
                 <p>Serve:  de 2 a 3 pessoas </p>
-                <button type='button' onClick={() => cart(menuItem)}>Adicionar ao carrinho - R$ {items.preco}</button>
+                <button type='button' onClick={() => {
+            cart({
+              id: items.id,
+              name: items.nome,
+              price: items.preco,
+              img: items.url,
+            });
+            closeModal(); 
+          }}>Adicionar ao carrinho - R$ {items.preco}</button>
             </div>
           </div>
         </ModalContent>
