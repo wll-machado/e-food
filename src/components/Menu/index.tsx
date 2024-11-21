@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { MainMenu, Card, Texts, Subtext, MenuOrder, Highlights, Cover } from "./styles";
-import star from '../../assets/estrela.svg'
+import estrela from '../../assets/estrela.svg'
 import { useEffect, useState } from "react";
 
 
@@ -32,7 +32,7 @@ const Menu = () => {
              <h2>{menu.titulo}</h2>
               <div>
                <span >{ menu.avaliacao} </span>
-               <img src={star} alt="estrela" />
+               <img src={estrela} alt="estrela" />
              </div>
            </Subtext>
             <MenuOrder>
