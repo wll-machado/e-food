@@ -11,7 +11,8 @@ const Cart = ({ cartItems, clearCart, isClose, isOpen}: any) => {
   const [orderMessage, setOrderMessage] = useState('');
   const navigate = useNavigate();
 
-  const total = cartItems.reduce((acc: any, item: { price: any }) => acc + item.price, 0);
+  const total = cartItems.reduce((acc: number, item: { price: number }) => acc + item.price, 0);
+
 
  
   const handleAddressSubmit = (e: React.FormEvent) => {
