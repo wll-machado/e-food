@@ -17,7 +17,7 @@ const Menu = () => {
   return (
     <MainMenu>
       { menuList.map((menu: any) => (
-        <Card>
+        <Card key={menu.id}>
           <div>
             <Highlights>
               { menu.destacado ? (

@@ -1,8 +1,12 @@
 
-import { Modal, ModalContent } from './styled'
+import { useDispatch } from 'react-redux';
+import { Modal, ModalContent } from './styled';
+import { adicionar } from '../../store/reducers/cart';
 
-const Plate = ({items, cart, closeModal}:any) => {
+const Plate = ({items, closeModal}:any) => {
     if (!items.isVisible) return null; 
+
+    const dispatch = useDispatch();
 
     return (
       <Modal className={items.isVisible ? 'visivel' : ''}>
@@ -20,12 +24,14 @@ const Plate = ({items, cart, closeModal}:any) => {
                 <p>{items.descricao}</p>
                 <p>Serve:  de 2 a 3 pessoas </p>
                 <button type='button' onClick={() => {
-            cart({
+            dispatch(adicionar({
               id: items.id,
-              name: items.nome,
-              price: items.preco,
-              img: items.url,
-            });
+              nome: items.nome,
+              preco: items.preco,
+              foto: items.url,
+              descricao: items.descricao
+             
+            }));
             closeModal(); 
           }}>Adicionar ao carrinho - R$ {items.preco}</button>
             </div>

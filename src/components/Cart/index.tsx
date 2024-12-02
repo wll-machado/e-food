@@ -3,15 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import { CartContainer, CartList, CartItem, Total, Formulario, MainContainer, CloseButton, BtnCart, Entrega, Pagamento, Message, Wrapper, CardWrapper } from './styles';
 
 import trash from '../../assets/delete.svg';
+import { useSelector } from 'react-redux';
+import { RootReducer } from '../../store';
 
-const Cart = ({ cartItems, clearCart, isClose, isOpen}: any) => {
+const Cart = ({  clearCart, isClose, isOpen}: any) => {
+
+  const itensCart = useSelector((state: RootReducer) => state.cart.item)
   const [step, setStep] = useState(1); // Controla a etapa atual
   const [address, setAddress] = useState({ name: '', street: '', city: '', zip: '', complement: ''});
   const [payment, setPayment] = useState({ method: '', cardNumber: '', cardName: '', Cvv: '', validation: '' });
   const [orderMessage, setOrderMessage] = useState('');
   const navigate = useNavigate();
 
-  const total = cartItems.reduce((acc: number, item: { price: number }) => acc + item.price, 0);
+  const total = itensCart.reduce((acc: number, item: { preco: number }) => acc + item.preco, 0);
+
 
 
  
@@ -47,18 +52,18 @@ const Cart = ({ cartItems, clearCart, isClose, isOpen}: any) => {
     <MainContainer  className={isOpen ? 'open' : ''}>
       <CartContainer className={isOpen ? 'open' : ''}> 
       <CloseButton onClick={isClose}>X</CloseButton>
-      {cartItems.length === 0 ? (
+      {itensCart.length === 0 ? (
         <p>Seu carrinho está vazio</p>
       ) : orderMessage ? (
         <Message>{orderMessage}</Message>
       ) : (
         <div>
           <CartList>
-            {cartItems.map((item: any, index: any) => (
+            {itensCart.map((item: any, index: any) => (
               <CartItem key={index}>
-                <img src={item.img} alt={item.name} />
+                <img src={item.foto} alt={item.nome} />
                 <div>
-                  <h2>{item.name}</h2> <span>R$ {item.price}</span>
+                  <h2>{item.nome}</h2> <span>R$ {item.preco}</span>
                   <img src={trash} alt="delete" />
                 </div>
               </CartItem>

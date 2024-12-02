@@ -11,11 +11,7 @@ import ProductDetails from './components/ProductDetails';
 function App() {
   const [cartItems, setCartItems] = useState<any[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-
-  const addToCart = (product: any) => {
-    setCartItems((prevItems) => [...prevItems, product]);
-  };
-
+  
   const closeCart = () => {
     setIsCartOpen(false);
     console.log('Carrinho fechado');
@@ -32,7 +28,7 @@ function App() {
         <Route path="/" element={<><Home /><Menu /></>} />
         <Route path="/menu/:id" 
           element={<ProductDetails 
-                     addToCart={addToCart} 
+                     
                      cartItems={cartItems} 
                      clearCart={clearCart} 
                      isCartOpen={isCartOpen} 
@@ -41,7 +37,6 @@ function App() {
         />
        <Route path="/cart" 
           element={<Cart 
-                     cartItems={cartItems} 
                      clearCart={clearCart} 
                      isClose={closeCart} 
                      isOpen={isCartOpen} 

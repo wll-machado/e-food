@@ -4,6 +4,8 @@ import logo from '../../assets/logo.png';
 import Cart from '../Cart';
 import { useEffect, useState } from 'react';
 import Plate from '../Plate';
+import { useSelector } from 'react-redux';
+import { RootReducer } from '../../store';
 
 export interface Cardapio  {
   foto:string 
@@ -11,7 +13,7 @@ export interface Cardapio  {
   id:number
   nome:string
   descricao:string
-  porcao:string
+  
 }
 
 export type Restaurant = {
@@ -42,7 +44,9 @@ const getDescription = (description:string) => {
   return description
 }
 
-const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCartOpen }: any) => {
+const ProductDetails = ({ clearCart, isCartOpen, setIsCartOpen }: any) => {
+
+  const itensCart = useSelector((state: RootReducer) => state.cart.item)
 
   const [modal, setModal] = useState<Modal>({
     isVisible: false,
@@ -91,7 +95,7 @@ const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCart
           <img src={logo} alt="logo" />
         </Link>
         <button onClick={() => setIsCartOpen(!isCartOpen)}>
-          <p>Itens no carrinho: {cartItems.length}</p>
+          <p>Itens no carrinho: {itensCart.length}</p>
         </button>
         </div>
       </HomeContainer>
@@ -123,9 +127,9 @@ const ProductDetails = ({ cartItems, addToCart, clearCart, isCartOpen, setIsCart
           </li>
         ))}
       </Lista>
-      <Plate items={modal} menuItem={menuItem} cart={addToCart} closeModal={closeModal}/>
+      <Plate items={modal} menuItem={menuItem}  closeModal={closeModal}/>
       
-      <Cart cartItems={cartItems} clearCart={clearCart} isOpen={isCartOpen} isClose={() => setIsCartOpen(false)} />
+      <Cart clearCart={clearCart} isOpen={isCartOpen} isClose={() => setIsCartOpen(false)} />
     </MainHome>
   );
 };
