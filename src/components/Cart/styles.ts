@@ -99,6 +99,7 @@ export const CartItem = styled.li`
       width: 16px;
       height: 16px;
       align-self: flex-end;
+      cursor: pointer;
     }
   }
 `;
@@ -111,7 +112,7 @@ margin-bottom: 15px;
   font-size: 14px;
   font-weight: 700;
   font-family: 'Roboto';
-  margin-top: 25vh;
+  margin-top: 5vh;
   color: #FFEBD9;
 `;
 

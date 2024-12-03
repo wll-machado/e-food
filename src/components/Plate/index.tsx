@@ -1,12 +1,14 @@
 
 import { useDispatch } from 'react-redux';
 import { Modal, ModalContent } from './styled';
-import { adicionar } from '../../store/reducers/cart';
+import { adicionar} from '../../store/reducers/cart';
 
-const Plate = ({items, closeModal}:any) => {
+const Plate = ({items, closeModal, openCart}:any) => {
     if (!items.isVisible) return null; 
 
     const dispatch = useDispatch();
+
+   
 
     return (
       <Modal className={items.isVisible ? 'visivel' : ''}>
@@ -32,13 +34,13 @@ const Plate = ({items, closeModal}:any) => {
               descricao: items.descricao
              
             }));
+            openCart();
             closeModal(); 
           }}>Adicionar ao carrinho - R$ {items.preco}</button>
             </div>
           </div>
         </ModalContent>
         <div className="overlay" onClick={() => {
-          console.log('Overlay clicado');
           closeModal();
         }}></div>
       </Modal>

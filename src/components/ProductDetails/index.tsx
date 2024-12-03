@@ -35,6 +35,7 @@ export interface Modal  {
   nome:string
   descricao:string
   porcao:string
+  
 }
 
 const getDescription = (description:string) => {
@@ -66,7 +67,9 @@ const ProductDetails = ({ clearCart, isCartOpen, setIsCartOpen }: any) => {
       id:0,
       nome:'',
       descricao:'',
-      porcao:''})
+      porcao:''
+      
+    })
   }
   
   const {id} = useParams()
@@ -114,20 +117,22 @@ const ProductDetails = ({ clearCart, isCartOpen, setIsCartOpen }: any) => {
             <h3>{menuItem.nome}</h3>
             <p>{getDescription(menuItem.descricao)}</p>
             <button type="button" onClick={() => {
-              setModal({
-                isVisible: true,
-                url: menuItem.foto, 
-                preco: menuItem.preco,
-                 id: menuItem.id, 
-                 nome: menuItem.nome, 
-                 descricao: menuItem.descricao, 
-                 porcao: menuItem.porcaourl})}}>
+    setModal({
+      isVisible: true,
+      url: menuItem.foto,
+      preco: menuItem.preco,
+      id: menuItem.id,
+      nome: menuItem.nome,
+      descricao: menuItem.descricao,
+      porcao: menuItem.porcao,
+    });
+  }}>
               Adicionar ao Carrinho
             </button>
           </li>
         ))}
       </Lista>
-      <Plate items={modal} menuItem={menuItem}  closeModal={closeModal}/>
+      <Plate items={modal} menuItem={menuItem}  closeModal={closeModal} openCart={() => setIsCartOpen(true)}/>
       
       <Cart clearCart={clearCart} isOpen={isCartOpen} isClose={() => setIsCartOpen(false)} />
     </MainHome>

@@ -16,9 +16,12 @@ const cartSlice = createSlice({
         adicionar: (state, action:PayloadAction<Cardapio>)=> {
             const item = action.payload;
             state.item.push(item);
-        }
+        },
+        remove:(state, action: PayloadAction<number>)=> {
+            state.item = state.item.filter(item => item.id !== action.payload)
+          },
     }
 });
 
-export const { adicionar } = cartSlice.actions;
+export const { adicionar, remove } = cartSlice.actions;
 export default cartSlice.reducer;

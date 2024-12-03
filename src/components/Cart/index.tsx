@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { CartContainer, CartList, CartItem, Total, Formulario, MainContainer, CloseButton, BtnCart, Entrega, Pagamento, Message, Wrapper, CardWrapper } from './styles';
 
 import trash from '../../assets/delete.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootReducer } from '../../store';
+import { remove } from '../../store/reducers/cart';
 
 const Cart = ({  clearCart, isClose, isOpen}: any) => {
 
+  const dispatch = useDispatch()
   const itensCart = useSelector((state: RootReducer) => state.cart.item)
   const [step, setStep] = useState(1); // Controla a etapa atual
   const [address, setAddress] = useState({ name: '', street: '', city: '', zip: '', complement: ''});
@@ -17,7 +19,9 @@ const Cart = ({  clearCart, isClose, isOpen}: any) => {
 
   const total = itensCart.reduce((acc: number, item: { preco: number }) => acc + item.preco, 0);
 
-
+  const format = (value: number): string => {
+    return value.toFixed(2);
+  };
 
  
   const handleAddressSubmit = (e: React.FormEvent) => {
@@ -48,6 +52,9 @@ const Cart = ({  clearCart, isClose, isOpen}: any) => {
     form.style.display = 'flex'
   };
 
+  const removeItem = (id:number) => {
+    dispatch(remove(id))
+  }
   return (
     <MainContainer  className={isOpen ? 'open' : ''}>
       <CartContainer className={isOpen ? 'open' : ''}> 
@@ -64,12 +71,12 @@ const Cart = ({  clearCart, isClose, isOpen}: any) => {
                 <img src={item.foto} alt={item.nome} />
                 <div>
                   <h2>{item.nome}</h2> <span>R$ {item.preco}</span>
-                  <img src={trash} alt="delete" />
+                  <img src={trash} alt="delete" onClick={() => removeItem(item.id)}/>
                 </div>
               </CartItem>
             ))}
           </CartList>
-          <Total><span>Valor Total:</span> <span>R$ {total}</span></Total>
+          <Total><span>Valor Total:</span> <span>R$ {format(total)}</span></Total>
           <BtnCart type='button' onClick={()=> next()}>continuar com a entrega</BtnCart>
 
           <Formulario id='form'>
