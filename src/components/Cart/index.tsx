@@ -26,19 +26,76 @@ const Cart = ({  clearCart, isClose, isOpen}: any) => {
  
   const handleAddressSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStep(2); // Muda para a etapa de pagamento
+    setStep(2); 
   };
 
-  const handlePaymentSubmit = (e: React.FormEvent) => {
+  const handlePaymentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setOrderMessage('Compra concluída com sucesso!');
+  
+    
+    const orderData = {
+      products: itensCart.map((item: any) => ({
+        id: item.id,
+        price: item.preco,
+      })),
+      delivery: {
+        receiver: address.name,
+        address: {
+          description: address.street,
+          city: address.city,
+          zipCode: address.zip,
+          number: parseInt(address.zip, 8), 
+          complement: address.complement,
+        },
+      },
+      payment: {
+        card: {
+          name: payment.cardName,
+          number: payment.cardNumber,
+          code: parseInt(payment.Cvv, 3),
+          expires: {
+            month: new Date(payment.validation).getMonth() + 1, 
+            year: new Date(payment.validation).getFullYear(), 
+          },
+        },
+      },
+    };
+  
+    try {
+      const response = await fetch('https://fake-api-tau.vercel.app/api/efood/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Erro ao processar o pedido.');
+      }
+  
+      const result = await response.json();
+      console.log('Resposta da API:', result);
+  
+      setOrderMessage(`
+      Pedido realizado - ${result.orderId}\n
+      Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.\n
+  Gostaríamos de ressaltar que nossos entregadores não estão autorizados a realizar cobranças extras.\n
+  Lembre-se da importância de higienizar as mãos após o recebimento do pedido, garantindo assim sua segurança e bem-estar durante a refeição.\n
+  Esperamos que desfrute de uma deliciosa e agradável experiência gastronômica. Bom apetite!
+    `);
     
     setTimeout(() => {
-      clearCart();// Redireciona para a página principal
+      clearCart();
       navigate('/');
-      setOrderMessage('');
-    }, 2000);
+        setOrderMessage('');
+      }, 3500);
+    } catch (error) {
+      console.error('Erro:', error);
+      setOrderMessage('Erro ao concluir o pedido. Tente novamente.');
+    }
   };
+  
   
   const back = ()=>{
     const form:any = document.getElementById('form');
@@ -62,7 +119,7 @@ const Cart = ({  clearCart, isClose, isOpen}: any) => {
       {itensCart.length === 0 ? (
         <p>Seu carrinho está vazio</p>
       ) : orderMessage ? (
-        <Message>{orderMessage}</Message>
+        <Message style={{ whiteSpace: 'pre-line' }}>{orderMessage}</Message>
       ) : (
         <div>
           <CartList>
@@ -152,7 +209,7 @@ const Cart = ({  clearCart, isClose, isOpen}: any) => {
             ) : (
               <Pagamento onSubmit={handlePaymentSubmit}>
                 <div>
-                <span>Pagamento - Valor a pagar:</span> <span>R$ {total}</span>
+                <span>Pagamento - Valor a pagar:</span> <span>R$ {format(total)}</span>
                 </div>
                 <h3>Forma de Pagamento</h3>
                 <label>

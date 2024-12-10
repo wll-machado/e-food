@@ -1,4 +1,6 @@
 import  { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { clearCart } from './store/reducers/cart';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Footer from './components/Footer';
 import GlobalStyle from '../main';
@@ -9,17 +11,17 @@ import ProductDetails from './components/ProductDetails';
 
 
 function App() {
-  const [cartItems, setCartItems] = useState<any[]>([]);
+  const dispatch = useDispatch();
+  const [cartItems] = useState<any[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   
   const closeCart = () => {
     setIsCartOpen(false);
-    console.log('Carrinho fechado');
   };
 
-  const clearCart = () => {
-    setCartItems([]);
-  };
+  const handleClearCart = () => {
+    dispatch(clearCart());
+};
 
   return (
     <Router>
@@ -30,7 +32,7 @@ function App() {
           element={<ProductDetails 
                      
                      cartItems={cartItems} 
-                     clearCart={clearCart} 
+                     clearCart={handleClearCart}  
                      isCartOpen={isCartOpen} 
                      setIsCartOpen={setIsCartOpen} 
                    />} 
@@ -49,3 +51,5 @@ function App() {
 }
 
 export default App;
+
+
